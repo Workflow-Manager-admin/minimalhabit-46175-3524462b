@@ -1,3 +1,4 @@
+// Add tsParticles animated orbs background
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import TopNavBar from './TopNavBar';
@@ -6,7 +7,7 @@ import HabitList from './HabitList';
 import CalendarSection from './CalendarSection';
 import ThemePicker from './ThemePicker';
 import FooterInsights from './FooterInsights';
-
+import ParticlesBackground from "./ParticlesBackground";
 // Theme definitions for 5 premium themes, using CSS variables
 const THEME_VARS = {
   nature: {
@@ -185,6 +186,8 @@ function App() {
 
   return (
     <div className="animated-gradient-bg">
+      {/* The ParticlesBackground is layered on top of the animated-gradient-bg, beneath .app */}
+      <ParticlesBackground />
       <div className="app">
         <TopNavBar>
           {/* If using nav slot, could put ThemePicker here */}
