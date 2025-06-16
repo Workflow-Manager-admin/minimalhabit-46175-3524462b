@@ -1,5 +1,6 @@
 import React from "react";
 import "./App.css";
+import ProgressRing from "./ProgressRing";
 
 /**
  * PUBLIC_INTERFACE
@@ -33,7 +34,6 @@ function HabitList({ habits, onToggleDone, onEdit, onDelete }) {
 }
 
 // PUBLIC_INTERFACE
-// HabitCard displays habit details and renders a horizontal progress bar for the current streak.
 function HabitCard({ habit, onToggleDone, onEdit, onDelete, streakGoal }) {
   const { name, frequency, streak, doneToday } = habit;
   const progress = Math.min(Math.max(streak, 0), streakGoal); // Clamp between 0-goal
@@ -42,9 +42,14 @@ function HabitCard({ habit, onToggleDone, onEdit, onDelete, streakGoal }) {
   // Unique IDs for inputs
   const checkboxId = `habit-done-${habit.id}`;
 
+  // For the ring: today's habit progress. If not doneToday, pulse the ring.
+  // Assume daily completion is binary for this demo.
+  const ringPercent = doneToday ? 100 : percent;
+  const showPulsingGlow = !doneToday;
+
   return (
     <div className="habit-card" tabIndex={0}>
-      <div className="habit-card-main">
+      <div className="habit-card-main" style={{ alignItems: "center" }}>
         <div>
           <div className="habit-card-title">{name}</div>
           <div className="habit-card-meta">
@@ -53,6 +58,18 @@ function HabitCard({ habit, onToggleDone, onEdit, onDelete, streakGoal }) {
               <span role="img" aria-label="flame">🔥</span> {streak} day{streak !== 1 ? "s" : ""}
             </span>
           </div>
+        </div>
+        {/* Animated ProgressRing SVG */}
+        <div style={{ minWidth: 54, marginLeft: "auto" }}>
+          <ProgressRing
+            value={ringPercent}
+            size={44}
+            showText={false}
+            pulse={showPulsingGlow}
+            ariaLabel={doneToday
+              ? `Habit completed for today: ${name}`
+              : `Habit incomplete for today: ${name}. Progress ${percent}%`}
+          />
         </div>
         <div className="habit-card-actions">
           <button title="Edit" className="habit-icon-btn" onClick={() => onEdit(habit.id)} tabIndex={-1}>
