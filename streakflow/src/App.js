@@ -5,6 +5,7 @@ import AddHabitCard from './AddHabitCard';
 import HabitList from './HabitList';
 import CalendarSection from './CalendarSection';
 import ThemePicker from './ThemePicker';
+import FooterInsights from './FooterInsights';
 
 // Theme definitions for 5 premium themes, using CSS variables
 const THEME_VARS = {
@@ -212,6 +213,7 @@ function App() {
             />
           </div>
         </main>
+        <FooterInsights habits={habits} />
       </div>
     </div>
   );

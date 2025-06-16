@@ -808,3 +808,182 @@ main, .container, .calendar-section, .add-habit-card, .habit-list {
 /* Hide scrollbars and vertical scroll overflow polish on mobile */
 ::-webkit-scrollbar { width: 8px; background: var(--pastel-bg-soft);}
 ::-webkit-scrollbar-thumb { background: var(--pastel-secondary);}
+
+
+/* === FOOTER INSIGHTS COMPONENT === */
+.footer-insights-glass {
+  width: 100%;
+  margin: 0 auto;
+  background: var(--frost-bg, rgba(255,255,255,0.59));
+  border-top: 2.2px solid var(--frost-border, rgba(170,170,220,0.13));
+  box-shadow: 0 -7px 33px 0 rgba(151, 195, 255, 0.09);
+  backdrop-filter: blur(12px) saturate(1.07);
+  -webkit-backdrop-filter: blur(12px) saturate(1.07);
+  border-radius: 28px 28px 0 0;
+  padding: 32px 2vw 17px 2vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 30;
+  position: relative;
+  font-family: 'Poppins','Inter',system-ui,sans-serif;
+  overflow: visible;
+  min-width: 0;
+  box-sizing: border-box;
+  animation: fadeInUp 0.77s cubic-bezier(0.39,0.24,0.27,1.12);
+}
+
+/* Progress row */
+.footer-progress-row {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+.footer-progress-label {
+  font-size: 1.08rem;
+  color: #567786;
+  font-weight: 500;
+  letter-spacing: 0.002em;
+  opacity: 0.87;
+}
+.footer-progress-percent {
+  font-size: 1.19rem;
+  font-weight: 700;
+  background: var(--pastel-accent, #a3d5ff);
+  color: #34594d;
+  border-radius: 16px;
+  padding: 2.5px 15px;
+  letter-spacing: 0.016em;
+  box-shadow: 0 1.5px 7px 0 #c6dee6ad;
+  opacity: 0.90;
+  transition: background 0.28s;
+}
+.footer-progressbar-bg {
+  width: 100%;
+  max-width: 520px;
+  height: 20px;
+  border-radius: 13px;
+  background: linear-gradient(90deg, #f7e9e4 0%, #a3d5ff 100%);
+  overflow: hidden;
+  border: 1.6px solid var(--pastel-accent, #a3d5ff);
+  margin-bottom: 11px;
+  box-shadow: 0 1.5px 11px 0 #d7eaf0ad;
+  position: relative;
+}
+.footer-progressbar-fg {
+  background: linear-gradient(90deg, #a8d5ba 0%, #a3d5ff 45%, #f4c2c2 97%);
+  height: 100%;
+  border-radius: 13px;
+  transition: width 0.55s cubic-bezier(0.58, 0.25, 0.22, 0.93);
+  box-shadow: 0 1.5px 7px 0 #bfd9f0ae;
+  min-width: 7%;
+  will-change: width;
+}
+.footer-progressbar-fg[style*="width: 0"] { min-width: 0;}
+
+.footer-stats-row {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 14px 0 12px 0;
+  width: 100%;
+  max-width: 680px;
+}
+.footer-stat-label {
+  font-size: 0.99rem;
+  color: #44626f;
+  font-weight: 500;
+  opacity: 0.77;
+  letter-spacing: 0.01em;
+}
+.footer-stat-value {
+  font-size: 1.23rem;
+  color: #13432d;
+  font-weight: 600;
+  opacity: 0.93;
+  letter-spacing: 0.012em;
+}
+.footer-stats-row > div {
+  background: linear-gradient(120deg, var(--pastel-bg-soft, #f2f6f9), var(--pastel-secondary, #e4ecf7) 80%);
+  border-radius: 12px;
+  box-shadow: var(--sf-shadow);
+  padding: 8px 19px 5px 19px;
+  text-align: center;
+  min-width: 65px;
+}
+
+.footer-quote-row {
+  margin-top: 18px;
+  font-family: 'Poppins','Inter',serif;
+  font-size: 1.12rem;
+  font-weight: 500;
+  color: #50907e;
+  text-align: center;
+  letter-spacing: 0.029em;
+  opacity: 1;
+  background: rgba(255,255,255,0.57);
+  border-radius: 30px;
+  box-shadow: 0 3px 14px 0 #b4e6fa28;
+  min-width: 0;
+  padding: 11px 4vw 12px 4vw;
+  max-width: 850px;
+  position:relative;
+  animation: fadeInUp 0.91s;
+  transition: background 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4em;
+}
+.footer-quote-text {
+  font-family: 'Poppins','Inter',serif;
+  font-size: 1.2em;
+  font-style: italic;
+  color: #3e5670;
+  opacity: 0.95;
+  line-height: 1.4;
+  transition: color 0.18s;
+  animation: fadeIn 1.12s;
+  font-weight: 600;
+}
+.footer-quote-marks {
+  font-size: 1.4em;
+  color: #e4bfb8;
+  opacity: 0.44;
+  vertical-align: baseline;
+  user-select: none;
+  font-family: serif;
+  font-style: normal;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 600px) {
+  .footer-insights-glass {
+    border-radius: 18px 18px 0 0;
+    padding: 18px 2vw 9px 2vw;
+  }
+  .footer-progress-row, .footer-progressbar-bg {
+    max-width: 95vw;
+  }
+  .footer-stats-row {
+    flex-wrap: wrap;
+    gap: 18px;
+    max-width: 99vw;
+  }
+  .footer-quote-row {
+    font-size: 1rem;
+    padding: 7px 2vw 8px 2vw;
+    min-width: 0;
+    max-width: 99vw;
+    border-radius: 18px;
+  }
+  .footer-stats-row > div {
+    min-width: 50px;
+    padding: 6px 7vw 6px 7vw;
+    font-size: 0.98rem;
+  }
+}
