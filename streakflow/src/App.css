@@ -31,34 +31,46 @@
 
 /* == Animated Gradient Background == */
 .animated-gradient-bg {
-  min-height: 100vh;
-  min-width: 100vw;
-  /* Responsive size & fallback color */
-  background: linear-gradient(120deg, var(--gradient1), var(--gradient2), var(--gradient3) 95%);
-  background-size: 300% 300%;
-  animation: gradientMotion 14s ease-in-out infinite;
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
+  /* Ensures a smooth, animated, full-viewport pastel gradient */
+  @apply fixed inset-0 w-screen h-screen min-h-screen min-w-full pointer-events-none select-none;
   z-index: 0;
+  background: linear-gradient(
+    120deg,
+    var(--gradient1, #f4c2c2),
+    var(--gradient2, #a3d5ff),
+    var(--gradient3, #a8d5ba) 95%
+  );
+  background-size: 350% 350%;
+  animation: tailwind-pulse-gradient 18s ease-in-out infinite;
+  will-change: background-position;
 }
-@keyframes gradientMotion {
+
+/* Keyframes for dreamy, undulating pastel movement */
+@keyframes tailwind-pulse-gradient {
   0% {
-    background-position: 0% 75%;
+    background-position: 0% 50%;
   }
-  50% {
-    background-position: 100% 40%;
+  20% {
+    background-position: 100% 50%;
+  }
+  40% {
+    background-position: 80% 80%;
+  }
+  60% {
+    background-position: 30% 100%;
+  }
+  80% {
+    background-position: 90% 40%;
   }
   100% {
-    background-position: 0% 75%;
+    background-position: 0% 50%;
   }
 }
-/* App content overlays the gradient */
+
+/* App content overlays the animated gradient. Transparent bg for .app so content floats above animated background. */
 .app {
-  position: relative;
+  @apply relative min-h-screen flex flex-col;
   z-index: 2;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
   background: transparent !important;
 }
 
