@@ -1,7 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&family=Inter:wght@400;500;600&display=swap');
 
-/* === CSS VARIABLES: Pastel Palette & General Styles === */
+/* === Animated Dynamic Gradient Background - uses CSS vars for stop colors === */
 :root {
+  --gradient1: #f4c2c2;
+  --gradient2: #a3d5ff;
+  --gradient3: #a8d5ba;
+  --frost-bg: rgba(255,255,255,0.58);
+  --frost-border: rgba(170,170,220,0.11);
   --pastel-bg: #ffffff;
   --pastel-bg-soft: #f2f6f9;
   --pastel-accent: #a3d5ff;
@@ -23,6 +28,127 @@
   --transition-primary: 0.22s cubic-bezier(0.46,0.04,0.35,0.95);
   --fadein-duration: 0.7s;
 }
+
+/* == Animated Gradient Background == */
+.animated-gradient-bg {
+  min-height: 100vh;
+  min-width: 100vw;
+  /* Responsive size & fallback color */
+  background: linear-gradient(120deg, var(--gradient1), var(--gradient2), var(--gradient3) 95%);
+  background-size: 300% 300%;
+  animation: gradientMotion 14s ease-in-out infinite;
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: 0;
+}
+@keyframes gradientMotion {
+  0% {
+    background-position: 0% 75%;
+  }
+  50% {
+    background-position: 100% 40%;
+  }
+  100% {
+    background-position: 0% 75%;
+  }
+}
+/* App content overlays the gradient */
+.app {
+  position: relative;
+  z-index: 2;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: transparent !important;
+}
+
+/* == Panel: Frosted Glass Effect Panel (main) == */
+.frosted-panel {
+  background: var(--frost-bg, rgba(255,255,255,0.56));
+  border-radius: var(--border-radius, 16px);
+  border: 1.2px solid var(--frost-border, rgba(160, 160, 192, 0.13));
+  box-shadow: 0 7px 36px 0 rgba(67, 60, 105, 0.09);
+  backdrop-filter: blur(17.5px) saturate(1.24);
+  -webkit-backdrop-filter: blur(17.5px) saturate(1.24);
+  /* Panel spacing */
+  margin: 36px auto 20px auto;
+  padding: 2.3em 2.7em 2.1em 2.7em;
+  transition: background 0.3s cubic-bezier(0.46,0.04,0.35,0.95), box-shadow 0.22s;
+  box-sizing: border-box;
+  max-width: 850px;
+  width: 98%;
+}
+
+.theme-picker-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 94px;
+  margin-bottom: -18px;
+  z-index: 5;
+}
+
+/* ThemePicker styling */
+.theme-picker {
+  display: flex;
+  gap: 0.6em;
+  align-items: center;
+  background: var(--frost-bg, rgba(255,255,255,0.385));
+  border-radius: 32px;
+  box-shadow: 0 4px 16px 0 rgba(180,205,225,0.05);
+  padding: 0.35em 1em 0.35em 0.9em;
+}
+
+.theme-picker-label {
+  font-weight: 600;
+  font-size: 1em;
+  color: var(--text-main);
+  letter-spacing: 0.04em;
+  opacity: 0.95;
+}
+.theme-picker-option {
+  margin-right: 0.18em;
+  font-weight: 500;
+  color: var(--text-main, #222);
+  padding: 0.27em 1.04em;
+  border-radius: 22px;
+  cursor: pointer;
+  user-select: none;
+  border: 1.5px solid transparent;
+  outline: none;
+  background: transparent;
+  font-size: 1em;
+  transition: background 0.2s, border 0.2s, color 0.2s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.theme-picker-option input[type="radio"] {
+  margin-right: 0.4em;
+  accent-color: var(--sf-primary, #A8D5BA);
+}
+
+.theme-picker-option--active,
+.theme-picker-option:focus {
+  background: var(--sf-secondary, #f2f6f9);
+  border: 1.5px solid var(--sf-primary, #A8D5BA);
+  color: var(--sf-accent, #5ad);
+}
+
+.theme-picker-option:active {
+  background: var(--pastel-accent, #a3d5ff18);
+}
+
+/* When on mobile, tighter */
+@media (max-width:600px) {
+  .theme-picker-wrapper {margin-top: 66px;}
+  .frosted-panel {
+    max-width: 99vw;
+    margin: 14px 2vw 20px 2vw;
+    padding: 1.3em 3vw 1.2em 3vw;
+  }
+}
+
 
 /* === GLOBAL RESETS & TYPE === */
 * {
