@@ -153,22 +153,27 @@ function App() {
     setHabits(prevHabits => prevHabits.filter(h => h.id !== id));
   };
 
+    // PUBLIC_INTERFACE
   // Confetti Celebration logic
+  // The effect triggers confetti when all habits are marked complete for today.
   const [confettiVisible, setConfettiVisible] = useState(false);
   const [prevAllComplete, setPrevAllComplete] = useState(false);
 
-  // --- Confetti trigger: All habits completed today, 1+ habit, and not all-complete previously
+  // --- Confetti trigger: All habits completed today (at least one), and not all-complete previously
   const todayISO = new Date().toISOString().slice(0, 10);
   const allComplete =
     habits.length > 0 &&
     habits.every(h => h.completionDates && h.completionDates.includes(todayISO));
 
-  // When allComplete transitions from false→true, show confetti
+  // When allComplete transitions from false→true, show confetti.
   useEffect(() => {
     if (allComplete && !prevAllComplete) {
       setConfettiVisible(true);
-      // After the confetti duration, hide
+      // Hide the confetti after the animation duration
       setTimeout(() => setConfettiVisible(false), 2700);
+    } else if (!allComplete) {
+      // Reset confetti state so it can trigger the next time all are complete
+      setConfettiVisible(false);
     }
     setPrevAllComplete(allComplete);
     // eslint-disable-next-line
