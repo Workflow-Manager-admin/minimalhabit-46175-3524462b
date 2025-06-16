@@ -1,34 +1,86 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import ProgressRing from "./ProgressRing";
+import { AnimatePresence, motion } from "framer-motion";
 
 /**
  * PUBLIC_INTERFACE
  * HabitList renders a grid of HabitCard items.
  * Displays list of habits and handles pass-through of events (toggle, edit, delete).
+ * Now animates card completion with bounce, and fade-out on deletion.
  */
 function HabitList({ habits, onToggleDone, onEdit, onDelete }) {
   // For demo, set a fixed goal for each habit (e.g., 21-day streak)
   const STREAK_GOAL = 21;
+  // Track which habit is bouncing for completion animation
+  const [bouncingId, setBouncingId] = useState(null);
 
+  // Handle done animation and logic.
+  const handleToggleDone = (id) => {
+    setBouncingId(id); // trigger bounce
+    // Give time for bounce animation before updating model
+    setTimeout(() => {
+      onToggleDone(id);
+      setBouncingId(null);
+    }, 310); // matches the bounce duration below
+  };
+
+  // When deleting, let AnimatePresence handle fade-out (onDelete triggers removal from list)
   return (
     <div className="habit-list">
-      {habits && habits.length > 0 ? (
-        habits.map((habit) => (
-          <HabitCard
-            key={habit.id}
-            habit={habit}
-            onToggleDone={onToggleDone}
-            onEdit={onEdit}
-            onDelete={onDelete}
-            streakGoal={STREAK_GOAL}
-          />
-        ))
-      ) : (
-        <div style={{ gridColumn: "1/-1", textAlign: "center", color: "#684655", opacity: 0.67 }}>
-          <span role="img" aria-label="notebook">📔</span> No habits yet.
-        </div>
-      )}
+      <AnimatePresence initial={false}>
+        {habits && habits.length > 0 ? (
+          habits.map((habit) => (
+            <motion.div
+              key={habit.id}
+              layout
+              initial={{ opacity: 0, scale: 0.95, y: 30 }}
+              animate={{
+                opacity: 1,
+                scale: bouncingId === habit.id ? [1, 1.12, 0.99, 1.07, 1] : 1,
+                y: 0,
+                transition: bouncingId === habit.id
+                  ? {
+                      scale: {
+                        duration: 0.31,
+                        times: [0, 0.3, 0.5, 0.73, 1],
+                        ease: "easeOut",
+                      },
+                    }
+                  : { duration: 0.25, ease: "easeOut" },
+              }}
+              exit={{
+                opacity: 0,
+                scale: 0.96,
+                y: 22,
+                transition: { duration: 0.36, ease: "easeIn" }
+              }}
+              style={{
+                willChange: "transform, opacity"
+              }}
+            >
+              <HabitCard
+                habit={habit}
+                onToggleDone={handleToggleDone}
+                onEdit={onEdit}
+                onDelete={onDelete}
+                streakGoal={STREAK_GOAL}
+              />
+            </motion.div>
+          ))
+        ) : (
+          <motion.div
+            style={{ gridColumn: "1/-1", textAlign: "center", color: "#684655", opacity: 0.67 }}
+            initial={{ opacity: 0, scale: 0.93 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            key="no-habits"
+          >
+            <span role="img" aria-label="notebook">📔</span> No habits yet.
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
