@@ -7,29 +7,51 @@
 <i> [webpack-dev-server] On Your Network (IPv4): http://172.17.0.2:3000/
 <i> [webpack-dev-server] Content not from webpack is served from './public' directory
 Injecting EditorRootWrapper import: ../.ve/EditorRootWrapper
-asset bundle.js 2.86 MiB [emitted] (name: main)
+asset bundle.js 3.6 MiB [emitted] (name: main)
 asset index.html 1.92 KiB [emitted]
-691 modules
-webpack 5.99.9 compiled successfully in 2341 ms
-assets by status 1.92 KiB [cached] 1 asset
-assets by path *.js 4.34 MiB
-  asset bundle.js 3.6 MiB [emitted] (name: main)
-  asset main.8d48edb8e422d270ee0f.hot-update.js 758 KiB [emitted] [immutable] [hmr] (name: main)
-asset main.8d48edb8e422d270ee0f.hot-update.json 28 bytes [emitted] [immutable] [hmr]
-Entrypoint main 4.34 MiB = bundle.js 3.6 MiB main.8d48edb8e422d270ee0f.hot-update.js 758 KiB
-cached modules 1.96 MiB [cached] 676 modules
-orphan modules 154 KiB [orphan] 129 modules
+orphan modules 161 KiB [orphan] 255 modules
 runtime modules 27.5 KiB 14 modules
-javascript modules 415 KiB
-  modules by path ./node_modules/framer-motion/dist/es/ 269 KiB 130 modules
-  modules by path ./node_modules/motion-dom/dist/es/ 128 KiB 104 modules
-  modules by path ./node_modules/motion-utils/dist/es/ 9.94 KiB
-    modules by path ./node_modules/motion-utils/dist/es/*.mjs 4.96 KiB
-      ./node_modules/motion-utils/dist/es/global-config.mjs 63 bytes [built] [code generated]
-      + 14 modules
-    modules by path ./node_modules/motion-utils/dist/es/easing/ 4.99 KiB
-      modules by path ./node_modules/motion-utils/dist/es/easing/*.mjs 2.98 KiB 5 modules
-      modules by path ./node_modules/motion-utils/dist/es/easing/utils/*.mjs 1.54 KiB 3 modules
-      modules by path ./node_modules/motion-utils/dist/es/easing/modifiers/*.mjs 478 bytes 2 modules
-  ./src/HabitList.jsx 8.53 KiB [built] [code generated]
-webpack 5.99.9 compiled successfully in 928 ms
+modules by path ./node_modules/ 2.28 MiB 791 modules
+modules by path ./src/ 69.8 KiB
+  modules by path ./src/*.jsx 31.2 KiB 7 modules
+  modules by path ./src/*.css 28.9 KiB 4 modules
+  modules by path ./src/*.js 9.59 KiB
+    ./src/index.js 530 bytes [built] [code generated]
+    + 2 modules
+modules by path ./.ve/ 15.1 KiB
+  modules by path ./.ve/*.js 10.6 KiB 2 modules
+  modules by path ./.ve/*.css 2.93 KiB 2 modules
+  ./.ve/EditorOverlay.jsx 1.58 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 2858 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 3.62 MiB
+  asset bundle.js 3.6 MiB [emitted] (name: main)
+  asset main.7ee2890e7107ea31ffcf.hot-update.js 17.9 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.7ee2890e7107ea31ffcf.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 3.62 MiB = bundle.js 3.6 MiB main.7ee2890e7107ea31ffcf.hot-update.js 17.9 KiB
+cached modules 2.51 MiB [cached] 1064 modules
+runtime modules 27.5 KiB 14 modules
+javascript modules 12.2 KiB
+  ./src/App.js 7.63 KiB [built] [code generated]
+  ./src/ConfettiCelebration.jsx 4.52 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 282 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 3.62 MiB
+  asset bundle.js 3.6 MiB [emitted] (name: main)
+  asset main.5cbf9740bfe050e72059.hot-update.js 12.7 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.5cbf9740bfe050e72059.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 3.62 MiB = bundle.js 3.6 MiB main.5cbf9740bfe050e72059.hot-update.js 12.7 KiB
+cached modules 2.52 MiB [cached] 1065 modules
+runtime modules 27.5 KiB 14 modules
+./src/App.js 8.55 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 247 ms
+assets by status 1.92 KiB [cached] 1 asset
+assets by path *.js 3.63 MiB
+  asset bundle.js 3.6 MiB [emitted] (name: main)
+  asset main.604ad163e900b52e7b42.hot-update.js 27.2 KiB [emitted] [immutable] [hmr] (name: main)
+asset main.604ad163e900b52e7b42.hot-update.json 28 bytes [emitted] [immutable] [hmr]
+Entrypoint main 3.63 MiB = bundle.js 3.6 MiB main.604ad163e900b52e7b42.hot-update.js 27.2 KiB
+cached modules 2.5 MiB [cached] 1065 modules
+runtime modules 27.5 KiB 14 modules
+./node_modules/css-loader/dist/cjs.js!./src/App.css 23.8 KiB [built] [code generated]
+webpack 5.99.9 compiled successfully in 155 ms

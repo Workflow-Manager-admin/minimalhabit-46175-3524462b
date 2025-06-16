@@ -480,6 +480,16 @@ input[type="checkbox"], input[type="radio"] {
     max-width: 98vw;
   }
 }
+
+/* === ConfettiCelebration overlay === */
+.confetti-celebration {
+  pointer-events: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+}
 .habit-card {
   background: var(--sf-secondary, #F7E9E4);
   border-radius: var(--card-radius);

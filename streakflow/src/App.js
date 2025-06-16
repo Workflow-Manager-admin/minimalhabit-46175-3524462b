@@ -8,6 +8,7 @@ import CalendarSection from './CalendarSection';
 import ThemePicker from './ThemePicker';
 import FooterInsights from './FooterInsights';
 import ParticlesBackground from "./ParticlesBackground";
+import ConfettiCelebration from "./ConfettiCelebration";
 // Theme definitions for 5 premium themes, using CSS variables
 const THEME_VARS = {
   nature: {
@@ -152,6 +153,27 @@ function App() {
     setHabits(prevHabits => prevHabits.filter(h => h.id !== id));
   };
 
+  // Confetti Celebration logic
+  const [confettiVisible, setConfettiVisible] = useState(false);
+  const [prevAllComplete, setPrevAllComplete] = useState(false);
+
+  // --- Confetti trigger: All habits completed today, 1+ habit, and not all-complete previously
+  const todayISO = new Date().toISOString().slice(0, 10);
+  const allComplete =
+    habits.length > 0 &&
+    habits.every(h => h.completionDates && h.completionDates.includes(todayISO));
+
+  // When allComplete transitions from false→true, show confetti
+  useEffect(() => {
+    if (allComplete && !prevAllComplete) {
+      setConfettiVisible(true);
+      // After the confetti duration, hide
+      setTimeout(() => setConfettiVisible(false), 2700);
+    }
+    setPrevAllComplete(allComplete);
+    // eslint-disable-next-line
+  }, [allComplete]);
+
   // Calendar region (same as previous)
   const selectedHabit = habits.length > 0 ? habits[0] : null;
   function getCalendarData() {
@@ -188,6 +210,7 @@ function App() {
     <div className="animated-gradient-bg">
       {/* The ParticlesBackground is layered on top of the animated-gradient-bg, beneath .app */}
       <ParticlesBackground />
+      <ConfettiCelebration show={confettiVisible} duration={2600} />
       <div className="app">
         <TopNavBar>
           {/* If using nav slot, could put ThemePicker here */}
