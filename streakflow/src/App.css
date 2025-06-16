@@ -411,6 +411,75 @@ body {
   }
 }
 
+/* === Habit Progress Bar Styles === */
+.habit-progress-bar-wrap {
+  margin-top: 8px;
+  margin-bottom: -2px;
+  /* Avoids crowding with actions */
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.habit-progress-labels {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.97em;
+  color: #8570a0;
+  margin-bottom: 2px;
+}
+.habit-progress-current {
+  font-weight: 500;
+  color: #684655;
+  opacity: 0.90;
+  letter-spacing: 0.01em;
+}
+.habit-progress-percent {
+  background: #f4f1fb;
+  color: #7f6a97;
+  border-radius: 7px;
+  font-size: 0.93em;
+  padding: 1.5px 7px 1.5px 7px;
+  font-weight: 500;
+  margin-left: 11px;
+  line-height: 1.38;
+}
+
+/* --- Bar itself --- */
+.habit-progress-bar-bg {
+  width: 100%;
+  background: linear-gradient(90deg, #f3f6fa 0%, #f7e9e4 100%);
+  border-radius: 21px;
+  height: 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0.5px 2px 0 rgba(180,110,155,0.05);
+  border: 1.2px solid #F4C2C2;
+}
+.habit-progress-bar-fg {
+  height: 100%;
+  border-radius: 21px;
+  transition: width 0.6s cubic-bezier(0.46,0.04,0.35,0.95);
+  background: linear-gradient(
+    90deg,
+    #A8D5BA 0%,
+    #99C3DD 35%,
+    #F4C2C2 90%
+  );
+  /* Soft pastel & smooth */
+  min-width: 6%;
+  /* tiny progress is still visible */
+  box-shadow: 0 1.5px 7px 0 #d1eee1ad;
+  will-change: width;
+}
+
+/* Extra: For empty bar, fg invisible */
+.habit-progress-bar-fg[style*="width: 0"] {
+  min-width: 0;
+}
+
+
 /* === CalendarSection Styles === */
 .calendar-section {
   background: var(--cal-bg, #f3f6fa);
