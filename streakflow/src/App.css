@@ -114,6 +114,75 @@ body {
   font-size: 1.1rem;
 }
 
+/* === AddHabitCard Styles === */
+.add-habit-card {
+  background: var(--sf-navbar-bg, #F7E9E4);
+  border-radius: 16px;
+  box-shadow: 0 6px 20px 0 rgba(44,70,122,0.10), 0 1.5px 4px 0 rgba(44,70,122,0.16);
+  width: 300px;
+  margin: 0 auto;
+  margin-top: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 28px 28px 22px 28px;
+  gap: 26px;
+}
+
+.add-habit-label {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--sf-navbar-fg, #23242a);
+  margin-bottom: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.add-habit-input, .add-habit-select {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 9px 11px;
+  font-size: 1rem;
+  margin-top: 5px;
+  background: #fff;
+  color: var(--sf-navbar-fg, #23242a);
+  outline: none;
+  transition: border 0.16s;
+  box-sizing: border-box;
+}
+
+.add-habit-input:focus, .add-habit-select:focus {
+  border: 1.5px solid var(--base-light, #F4C2C2);
+}
+
+.add-habit-btn {
+  margin-top: 12px;
+  background: var(--accent-color, #F4C2C2);
+  color: var(--sf-navbar-fg, #23242a);
+  border: none;
+  border-radius: 7px;
+  padding: 12px 0;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 0.17s;
+  box-shadow: 0 1px 5px 0 rgba(44,70,122,0.08);
+  letter-spacing: 0.02em;
+}
+
+.add-habit-btn:hover, .add-habit-btn:focus {
+  background: #e4b0b0;
+  color: #1a1a22;
+}
+
+@media (max-width: 440px) {
+  .add-habit-card {
+    width: 95vw;
+    padding: 18px 8vw 18px 8vw;
+  }
+}
+
 /* === StreakFlow NAVBAR === */
 .sf-navbar {
   width: 100%;
